@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  api:
+    container_name: openchat_io_api_swoole
+    build: .
+    ports:
+      - 80:80
+    volumes:
+      - ./laravel:/var/www
+    depends_on:
+      - "db"
+
+  db:
+    container_name: openchat_io_db_swoole
+    image: mysql:8.0.23
+    command: mysqld --default-authentication-plugin=mysql_native_password --init-file /tmp/init.sql
+    ports:
+      - 3306:3306
+    volumes:
+      - ./init.sql:/tmp/init.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
