@@ -4,10 +4,9 @@ namespace Tests\Usecases\Register;
 
 use App\Usecases\Register\DuplicateUsernameException;
 use App\Usecases\Register\UserRegistrationRepository;
-use Illuminate\Support\Facades\DB;
-use Tests\TestCase;
+use Tests\DBTestCase;
 
-class Repository_CreateUser_Test extends TestCase
+class Repository_CreateUser_Test extends DBTestCase
 {
     private UserRegistrationRepository $repo;
     private UserRegistrationRepository $otherRepo;
@@ -15,16 +14,9 @@ class Repository_CreateUser_Test extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        DB::beginTransaction();
 
         $this->repo = new UserRegistrationRepository();
         $this->otherRepo = new UserRegistrationRepository();
-    }
-
-    public function tearDown(): void
-    {
-        DB::rollBack();
-        parent::tearDown();
     }
 
     public function

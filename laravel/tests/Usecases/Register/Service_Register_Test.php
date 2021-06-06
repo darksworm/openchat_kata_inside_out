@@ -16,7 +16,6 @@ class Service_Register_Test extends TestCase
 
     public function setUp(): void
     {
-        parent::setUp();
         $this->userRepo = $this->createMock(UserRegistrationRepository::class);
         $this->hasher = $this->createMock(PasswordHasher::class);
 

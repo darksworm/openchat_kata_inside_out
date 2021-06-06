@@ -14,7 +14,6 @@ class BCryptPasswordHasherTest extends TestCase
     protected function setUp(): void
     {
         $this->hasher = new BCryptPasswordHasher();
-        parent::setUp();
     }
 
     public function
