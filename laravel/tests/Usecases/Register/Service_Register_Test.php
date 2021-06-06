@@ -1,26 +1,26 @@
 <?php
 
-namespace Tests\Services;
+namespace Tests\Usecases\Register;
 
-use App\Exceptions\DuplicateUsernameException;
-use App\Repositories\UserRepository;
-use App\Services\PasswordHasher;
-use App\Services\UserService;
+use App\Usecases\HashPassword\PasswordHasher;
+use App\Usecases\Register\DuplicateUsernameException;
+use App\Usecases\Register\RegistrationService;
+use App\Usecases\Register\UserRegistrationRepository;
 use Tests\TestCase;
 
-class UserServiceTest extends TestCase
+class Service_Register_Test extends TestCase
 {
-    private UserRepository $userRepo;
-    private UserService $service;
+    private UserRegistrationRepository $userRepo;
+    private RegistrationService $service;
     private PasswordHasher $hasher;
 
     public function setUp(): void
     {
         parent::setUp();
-        $this->userRepo = $this->createMock(UserRepository::class);
+        $this->userRepo = $this->createMock(UserRegistrationRepository::class);
         $this->hasher = $this->createMock(PasswordHasher::class);
 
-        $this->service = new UserService($this->userRepo, $this->hasher);
+        $this->service = new RegistrationService($this->userRepo, $this->hasher);
     }
 
     public function

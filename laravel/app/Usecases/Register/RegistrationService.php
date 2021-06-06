@@ -1,19 +1,18 @@
 <?php
 
 
-namespace App\Services;
+namespace App\Usecases\Register;
 
 
-use App\Exceptions\CannotHashEmptyPasswordException;
-use App\Exceptions\DuplicateUsernameException;
-use App\Repositories\UserRepository;
+use App\Usecases\HashPassword\CannotHashEmptyPasswordException;
+use App\Usecases\HashPassword\PasswordHasher;
 
-class UserService
+class RegistrationService
 {
-    private UserRepository $repository;
+    private UserRegistrationRepository $repository;
     private PasswordHasher $passwordHasher;
 
-    public function __construct(UserRepository $repository, PasswordHasher $passwordHasher)
+    public function __construct(UserRegistrationRepository $repository, PasswordHasher $passwordHasher)
     {
         $this->repository = $repository;
         $this->passwordHasher = $passwordHasher;

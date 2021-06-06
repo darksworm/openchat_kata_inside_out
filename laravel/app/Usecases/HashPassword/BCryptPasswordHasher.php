@@ -1,10 +1,8 @@
 <?php
 
 
-namespace App\Services;
+namespace App\Usecases\HashPassword;
 
-
-use App\Exceptions\CannotHashEmptyPasswordException;
 
 class BCryptPasswordHasher implements PasswordHasher
 {

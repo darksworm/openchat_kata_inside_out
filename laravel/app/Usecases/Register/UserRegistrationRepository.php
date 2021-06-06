@@ -1,13 +1,12 @@
 <?php
 
 
-namespace App\Repositories;
+namespace App\Usecases\Register;
 
 
-use App\Exceptions\DuplicateUsernameException;
 use App\Models\User;
 
-class UserRepository
+class UserRegistrationRepository
 {
     public function getUserCount(): int
     {

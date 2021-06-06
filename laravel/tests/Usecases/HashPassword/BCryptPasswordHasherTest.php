@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\Services;
+namespace Tests\Usecases\HashPassword;
 
-use App\Exceptions\CannotHashEmptyPasswordException;
-use App\Services\BCryptPasswordHasher;
-use App\Services\PasswordHasher;
+use App\Usecases\HashPassword\BCryptPasswordHasher;
+use App\Usecases\HashPassword\CannotHashEmptyPasswordException;
+use App\Usecases\HashPassword\PasswordHasher;
 use Tests\TestCase;
 
 class BCryptPasswordHasherTest extends TestCase
