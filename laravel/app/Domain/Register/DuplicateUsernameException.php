@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Usecases\Register;
+namespace App\Domain\Register;
 
 
 use RuntimeException;

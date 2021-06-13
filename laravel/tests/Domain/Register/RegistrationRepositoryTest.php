@@ -1,22 +1,22 @@
 <?php
 
-namespace Tests\Usecases\Register;
+namespace Tests\Domain\Register;
 
-use App\Usecases\Register\DuplicateUsernameException;
-use App\Usecases\Register\UserRegistrationRepository;
+use App\Domain\Register\DuplicateUsernameException;
+use App\Domain\Register\RegisterRepository;
 use Tests\DBTestCase;
 
-class Repository_CreateUser_Test extends DBTestCase
+class RegistrationRepositoryTest extends DBTestCase
 {
-    private UserRegistrationRepository $repo;
-    private UserRegistrationRepository $otherRepo;
+    private RegisterRepository $repo;
+    private RegisterRepository $otherRepo;
 
     public function setUp(): void
     {
         parent::setUp();
 
-        $this->repo = new UserRegistrationRepository();
-        $this->otherRepo = new UserRegistrationRepository();
+        $this->repo = new RegisterRepository();
+        $this->otherRepo = new RegisterRepository();
     }
 
     public function

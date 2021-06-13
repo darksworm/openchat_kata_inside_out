@@ -1,25 +1,26 @@
 <?php
 
-namespace Tests\Usecases\Register;
+namespace Tests\Domain\Register;
 
-use App\Usecases\HashPassword\PasswordHasher;
-use App\Usecases\Register\DuplicateUsernameException;
-use App\Usecases\Register\RegistrationService;
-use App\Usecases\Register\UserRegistrationRepository;
+use App\Domain\HashPassword\PasswordHasher;
+use App\Domain\Register\DuplicateUsernameException;
+use App\Domain\Register\RegisterRepository;
+use App\Domain\Register\RegisterService;
+use App\Models\User;
 use Tests\TestCase;
 
-class Service_Register_Test extends TestCase
+class RegistrationServiceTest extends TestCase
 {
-    private UserRegistrationRepository $userRepo;
-    private RegistrationService $service;
+    private RegisterRepository $userRepo;
+    private RegisterService $service;
     private PasswordHasher $hasher;
 
     public function setUp(): void
     {
-        $this->userRepo = $this->createMock(UserRegistrationRepository::class);
+        $this->userRepo = $this->createMock(RegisterRepository::class);
         $this->hasher = $this->createMock(PasswordHasher::class);
 
-        $this->service = new RegistrationService($this->userRepo, $this->hasher);
+        $this->service = new RegisterService($this->userRepo, $this->hasher);
     }
 
     public function
@@ -70,5 +71,25 @@ class Service_Register_Test extends TestCase
             ->with("username", "some very distinct password hash", "about");
 
         $this->service->register("username", "password", "about");
+    }
+
+    public function
+    test_returns_created_user_model()
+    {
+        $this->hasher->expects($this->once())
+            ->method('hashForPassword')
+            ->with("password")
+            ->willReturn("some very distinct password hash");
+
+        $repoReturnUser = new User();
+
+        $this->userRepo->expects($this->once())
+            ->method('createUser')
+            ->with("username", "some very distinct password hash", "about")
+            ->willReturn($repoReturnUser);
+
+        $registeredUser = $this->service->register("username", "password", "about");
+
+        $this->assertEquals($repoReturnUser, $registeredUser);
     }
 }

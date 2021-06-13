@@ -1,12 +1,12 @@
 <?php
 
 
-namespace App\Usecases\Register;
+namespace App\Domain\Register;
 
 
 use App\Models\User;
 
-class UserRegistrationRepository
+class RegisterRepository
 {
     public function getUserCount(): int
     {

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Usecases\HashPassword;
+namespace App\Domain\HashPassword;
 
 
 class BCryptPasswordHasher implements PasswordHasher

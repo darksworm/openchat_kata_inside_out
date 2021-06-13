@@ -172,6 +172,8 @@ return [
         App\Framework\Providers\AppServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Framework\Providers\RouteServiceProvider::class,
+
+        \App\Domain\HashPassword\PasswordHasherProvider::class,
     ],
 
     /*
